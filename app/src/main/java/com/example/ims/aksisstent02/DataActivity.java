@@ -22,7 +22,7 @@ public class DataActivity extends AppCompatActivity {
         viewName = (TextView) findViewById(R.id.viewName);
         viewName.setText(teacher);
 
-        TeachersDAO Alpha = new TeachersDAO();
+        TeachersDAO Alpha = new TeachersDAO(this);
         Alpha.doXML();
 
         btnBack.setOnClickListener(new View.OnClickListener() {

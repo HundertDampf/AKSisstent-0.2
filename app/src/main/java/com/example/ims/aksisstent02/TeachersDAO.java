@@ -7,7 +7,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.io.File;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -19,17 +20,22 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 public class TeachersDAO {
     String Output1;
-    List<String> Output2;
-    Context context;
+    List<String> Output2 = new ArrayList<String>();
+    private Context context;
+
+    public TeachersDAO(Context current){
+            this.context = current;
+        }
 
     public void doXML() {
 
         try {
-            XmlResourceParser is = context.getXml(R.xml.teachers);
+            // XmlResourceParser is = context.getXml(R.xml.teachers);
 
-            File fXmlFile = new File("url");
+            InputStream fXmlFile = context.getResources().openRawResource(R.raw.teachers);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            System.out.println("\ndBuilder.parse");
             Document doc = dBuilder.parse(fXmlFile);
 
             //optional, but recommended
@@ -38,9 +44,11 @@ public class TeachersDAO {
 
             //   System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 
-            NodeList nList = doc.getElementsByTagName("teachers");
+            System.out.println("\ngetElemetsByTagName");
+            NodeList nList = doc.getElementsByTagName("teacher");
 
 
+            System.out.println("\n# of elements found :" + nList.getLength());
             for (int temp = 0; temp < nList.getLength(); temp++) {
 
                 Node nNode = nList.item(temp);
@@ -53,10 +61,12 @@ public class TeachersDAO {
 
                     //Output1= "First Name : " + eElement.getElementsByTagName("forename").item(0).getTextContent();
 
-                    Output2.add(eElement.getElementsByTagName("name").item(0).getTextContent());
+                    System.out.println("\nCurrent NAME     :" + eElement.getElementsByTagName("NAME").item(0).getTextContent());
+                    System.out.println("\nCurrent FORENAME :" + eElement.getElementsByTagName("FORENAME").item(0).getTextContent());
+                    Output2.add(temp, eElement.getElementsByTagName("NAME").item(0).getTextContent());
 
-                    DataActivity Alpha = new DataActivity();
-                    Alpha.toast(Output2.get(temp));
+                    // DataActivity Alpha = new DataActivity();
+                    // Alpha.toast(Output2.get(temp));
                 }
             }
         } catch (Exception e) {

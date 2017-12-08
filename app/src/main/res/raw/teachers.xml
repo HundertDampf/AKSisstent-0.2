@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rootli>
+<root>
     <teacher id="schoohf">
         <NAME>Schoohf</NAME>
         <FORENAME>Oliver</FORENAME>
@@ -32,4 +32,4 @@
         <NAME>Salm</NAME>
         <FORENAME>Ulrich</FORENAME>
     </teacher>
-</rootli>
+</root>
