@@ -1,5 +1,6 @@
 package com.example.ims.aksisstent02;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,7 @@ public class DataActivity extends AppCompatActivity {
         TeachersDAO Alpha = new TeachersDAO(this);
         Alpha.doXML();
 
+/*
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,7 +34,7 @@ public class DataActivity extends AppCompatActivity {
 
             }
         });
-
+*/
 
     }
 
@@ -41,16 +43,11 @@ public class DataActivity extends AppCompatActivity {
         this.teacher = teacher;
     }
 
-    public void toast(String output) {
-        //  for (int i = 1; i < 9; i++) {
-        if (output != null) {
+    public static void toast(Context context, String output) {
+        if (output == null) {
             output = "nope";
-            Toast toast = Toast.makeText(getApplicationContext(), output, Toast.LENGTH_SHORT);
-            toast.show();
-            //}
-        } else {
-            Toast toast = Toast.makeText(getApplicationContext(), output, Toast.LENGTH_SHORT);
-            toast.show();
         }
+        Toast toast = Toast.makeText(context, output, Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

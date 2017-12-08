@@ -65,8 +65,7 @@ public class TeachersDAO {
                     System.out.println("\nCurrent FORENAME :" + eElement.getElementsByTagName("FORENAME").item(0).getTextContent());
                     Output2.add(temp, eElement.getElementsByTagName("NAME").item(0).getTextContent());
 
-                    // DataActivity Alpha = new DataActivity();
-                    // Alpha.toast(Output2.get(temp));
+                    DataActivity.toast(context, Output2.get(temp));
                 }
             }
         } catch (Exception e) {
